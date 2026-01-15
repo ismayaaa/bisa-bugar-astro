@@ -93,12 +93,12 @@
 
             <!-- Auth Buttons (Desktop) -->
             <div class="auth-buttons hide-mobile">
-                <button class="btn-login">LOGIN</button>
-                <button class="btn-register">DAFTAR</button>
+                <a href="/login" class="btn-login">LOGIN</a>
+                <a href="/daftar" class="btn-register">DAFTAR</a>
             </div>
 
             <!-- Login Button (Mobile) -->
-            <button class="btn-login-mobile hide-desktop">LOGIN</button>
+            <a href="/login" class="btn-login-mobile hide-desktop">LOGIN</a>
 
             <!-- Hamburger Menu (Tablet) -->
             <button
@@ -151,8 +151,8 @@
                 {/each}
             </div>
             <div class="mobile-menu-auth">
-                <button class="btn-login-outline">LOGIN</button>
-                <button class="btn-register-mobile">DAFTAR</button>
+                <a href="/login" class="btn-login-outline">LOGIN</a>
+                <a href="/daftar" class="btn-register-mobile">DAFTAR</a>
             </div>
         </div>
     {/if}

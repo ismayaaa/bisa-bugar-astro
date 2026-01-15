@@ -1,0 +1,139 @@
+---
+/**
+ * Login Page - Bisa Bugar
+ * Simple login form with classic captcha (math-based)
+ */
+
+import "../styles/global.css";
+import Header from "../components/layout/Header.svelte";
+import Footer from "../components/layout/Footer.svelte";
+import LoginForm from "../components/auth/LoginForm.svelte";
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Login ke akun Bisa Bugar Anda untuk mengakses jadwal kelas, booking personal trainer, dan fitur lainnya."
+        />
+        <title>Login - Bisa Bugar</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    </head>
+    <body id="body">
+        <Header client:load />
+
+        <main class="auth-page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <div class="logo-icon">BB</div>
+                        <h1>Selamat Datang!</h1>
+                        <p>Masuk ke akun Bisa Bugar Anda</p>
+                    </div>
+
+                    <LoginForm client:load />
+
+                    <div class="auth-footer">
+                        <p>
+                            Belum punya akun? <a href="/daftar"
+                                >Daftar Sekarang</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .auth-page {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    }
+
+    :global(.dark-mode) .auth-page {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .auth-container {
+        width: 100%;
+        max-width: 28rem;
+    }
+
+    .auth-card {
+        background: var(--color-surface);
+        border-radius: 2rem;
+        padding: 2.5rem;
+        box-shadow: var(--shadow-2xl);
+        border: 1px solid var(--color-border-light);
+    }
+
+    @media (min-width: 768px) {
+        .auth-card {
+            padding: 3rem;
+        }
+    }
+
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+        width: 4rem;
+        height: 4rem;
+        background: var(--color-primary);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 900;
+        font-size: 1.25rem;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 8px 20px -4px rgba(234, 88, 12, 0.4);
+    }
+
+    .auth-header h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+    }
+
+    .auth-header p {
+        color: var(--color-text-tertiary);
+        font-size: 0.875rem;
+    }
+
+    .auth-footer {
+        margin-top: 2rem;
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border-light);
+    }
+
+    .auth-footer p {
+        color: var(--color-text-tertiary);
+        font-size: 0.875rem;
+    }
+
+    .auth-footer a {
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    .auth-footer a:hover {
+        text-decoration: underline;
+    }
+</style>
