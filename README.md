@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # bisa-bugar-astro
-=======
 # Bisa Bugar - Astro + Svelte
 
 > Platform Edukasi Gym & Fitness Terintegrasi
