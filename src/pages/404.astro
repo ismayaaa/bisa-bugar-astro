@@ -1,0 +1,110 @@
+---
+/**
+ * 404 Page - Bisa Bugar
+ */
+import "../styles/global.css";
+import Header from "../components/layout/Header.svelte";
+import Footer from "../components/layout/Footer.svelte";
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Halaman Tidak Ditemukan - Bisa Bugar</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    </head>
+    <body id="body">
+        <Header client:only="svelte" />
+
+        <main class="error-page">
+            <div class="error-container">
+                <div class="error-code">404</div>
+                <h1>Halaman Tidak Ditemukan</h1>
+                <p>
+                    Maaf, halaman yang Anda cari tidak ada atau telah
+                    dipindahkan.
+                </p>
+                <a href="/" class="btn-home">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        width="20"
+                        height="20"
+                    >
+                        <path
+                            d="M11.47 3.841a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.061l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 101.061 1.06l8.69-8.689z"
+                        ></path>
+                        <path
+                            d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.432z"
+                        ></path>
+                    </svg>
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .error-page {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    }
+
+    :global(.dark-mode) .error-page {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .error-container {
+        text-align: center;
+        max-width: 28rem;
+    }
+
+    .error-code {
+        font-size: 8rem;
+        font-weight: 900;
+        color: var(--color-primary);
+        line-height: 1;
+        margin-bottom: 1rem;
+        text-shadow: 4px 4px 0 rgba(234, 88, 12, 0.2);
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+    }
+
+    p {
+        color: var(--color-text-tertiary);
+        margin-bottom: 2rem;
+    }
+
+    .btn-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: var(--color-primary);
+        color: white;
+        font-weight: 700;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.3);
+        transition: all 0.15s;
+    }
+
+    .btn-home:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px -5px rgba(234, 88, 12, 0.4);
+    }
+</style>

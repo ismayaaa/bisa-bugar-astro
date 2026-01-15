@@ -1,0 +1,162 @@
+---
+/**
+ * Syarat & Ketentuan - Bisa Bugar
+ */
+import "../styles/global.css";
+import Header from "../components/layout/Header.svelte";
+import Footer from "../components/layout/Footer.svelte";
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Syarat dan Ketentuan penggunaan platform Bisa Bugar"
+        />
+        <title>Syarat & Ketentuan - Bisa Bugar</title>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    </head>
+    <body id="body">
+        <Header client:only="svelte" />
+
+        <main class="legal-page">
+            <div class="container">
+                <article class="legal-content">
+                    <h1>Syarat & Ketentuan</h1>
+                    <p class="last-updated">
+                        Terakhir diperbarui: Januari 2025
+                    </p>
+
+                    <section>
+                        <h2>1. Penerimaan Syarat</h2>
+                        <p>
+                            Dengan mengakses dan menggunakan platform Bisa
+                            Bugar, Anda menyetujui untuk terikat oleh syarat dan
+                            ketentuan ini.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>2. Penggunaan Layanan</h2>
+                        <p>
+                            Platform Bisa Bugar menyediakan layanan edukasi
+                            fitness dan gym. Pengguna bertanggung jawab untuk:
+                        </p>
+                        <ul>
+                            <li>
+                                Memberikan informasi akurat saat pendaftaran
+                            </li>
+                            <li>Menjaga kerahasiaan akun</li>
+                            <li>
+                                Menggunakan layanan sesuai peraturan yang
+                                berlaku
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>3. Keanggotaan</h2>
+                        <p>
+                            Membership Bisa Bugar bersifat personal dan tidak
+                            dapat dipindahtangankan. Pembatalan membership
+                            mengikuti prosedur yang berlaku.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>4. Pembatasan Tanggung Jawab</h2>
+                        <p>
+                            Bisa Bugar tidak bertanggung jawab atas cedera yang
+                            terjadi akibat penggunaan fasilitas tanpa pengawasan
+                            yang tepat.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>5. Kontak</h2>
+                        <p>
+                            Untuk pertanyaan terkait syarat dan ketentuan,
+                            hubungi kami di: support@bisabugar.com
+                        </p>
+                    </section>
+
+                    <a href="/" class="btn-back">← Kembali ke Beranda</a>
+                </article>
+            </div>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .legal-page {
+        padding: 4rem 0;
+        background: var(--color-bg);
+    }
+
+    .legal-content {
+        max-width: 48rem;
+        margin: 0 auto;
+        background: var(--color-surface);
+        padding: 3rem;
+        border-radius: 2rem;
+        box-shadow: var(--shadow-lg);
+    }
+
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: var(--color-text-primary);
+    }
+
+    .last-updated {
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--color-text-primary);
+    }
+
+    p {
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        margin-left: 1.5rem;
+        color: var(--color-text-secondary);
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 2rem;
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    .btn-back:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -19,18 +19,18 @@
     }
 
     const navLinks = [
-        { href: "#home", label: "Home" },
-        { href: "#program", label: "Program" },
-        { href: "#jadwal", label: "Jadwal" },
-        { href: "#tutorial", label: "Tutorial" },
-        { href: "#artikel", label: "Artikel" },
+        { href: "/", label: "Home" },
+        { href: "/#program", label: "Program" },
+        { href: "/#jadwal", label: "Jadwal" },
+        { href: "/#tutorial", label: "Tutorial" },
+        { href: "/#artikel", label: "Artikel" },
     ];
 </script>
 
 <header class="header">
     <nav class="nav container" aria-label="Main navigation">
         <!-- Logo -->
-        <a href="#home" class="logo" aria-label="Bisa Bugar - Home">
+        <a href="/" class="logo" aria-label="Bisa Bugar - Home">
             <div class="logo-icon">BB</div>
             <span class="logo-text">BisaBugar</span>
         </a>
