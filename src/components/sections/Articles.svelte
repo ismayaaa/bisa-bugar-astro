@@ -95,14 +95,17 @@
 
     .btn-blog {
         padding: 0.625rem 1.5rem;
-        border: 1px solid var(--color-border);
+        background: #111827;
+        color: white;
+        border: 1px solid #111827;
         border-radius: 9999px;
         font-weight: 700;
         transition: all 0.15s;
     }
 
     .btn-blog:hover {
-        background: var(--color-bg-secondary);
+        background: #1f2937;
+        border-color: #1f2937;
     }
 
     .articles-grid {
@@ -139,10 +142,11 @@
         top: 1rem;
         left: 1rem;
         padding: 0.25rem 0.75rem;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(4px);
         font-size: 0.75rem;
         font-weight: 700;
+        color: #111827;
         border-radius: 9999px;
     }
 
