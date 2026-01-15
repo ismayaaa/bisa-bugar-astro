@@ -1,0 +1,88 @@
+---
+/**
+ * Bisa Bugar - Main Landing Page
+ * Unified responsive layout for desktop and mobile
+ */
+
+// Import global styles
+import '../styles/global.css';
+
+// Import Svelte components
+import Header from '../components/layout/Header.svelte';
+import Footer from '../components/layout/Footer.svelte';
+import Hero from '../components/sections/Hero.svelte';
+import QuickBooking from '../components/sections/QuickBooking.svelte';
+import Programs from '../components/sections/Programs.svelte';
+import Tutorials from '../components/sections/Tutorials.svelte';
+import Schedule from '../components/sections/Schedule.svelte';
+import MembershipPromo from '../components/sections/MembershipPromo.svelte';
+import Articles from '../components/sections/Articles.svelte';
+import BookingModal from '../components/ui/BookingModal.svelte';
+import SuccessToast from '../components/ui/SuccessToast.svelte';
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bisa Bugar - Platform edukasi gym & fitness terintegrasi. Raih target tubuh idealmu dengan panduan profesional, tutorial gerakan, dan jadwal kelas fleksibel." />
+  <meta name="keywords" content="gym, fitness, workout, latihan, tutorial, program latihan, personal trainer, kesehatan" />
+  <meta name="author" content="Kelompok 2 - BINUS University" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Bisa Bugar - Solusi Fitness Terintegrasi" />
+  <meta property="og:description" content="Platform edukasi gym #1. Raih target tubuh idealmu dengan panduan profesional." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  
+  <title>Bisa Bugar - Solusi Fitness Terintegrasi</title>
+</head>
+<body id="body">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">
+    Langsung ke konten utama
+  </a>
+
+  <!-- Header / Navigation -->
+  <Header client:load />
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <Hero />
+    
+    <!-- Quick Booking Access -->
+    <QuickBooking client:load />
+    
+    <!-- Programs Section -->
+    <Programs />
+    
+    <!-- Tutorials Section (Desktop Only) -->
+    <Tutorials />
+    
+    <!-- Schedule Section (Desktop Only) -->
+    <Schedule client:load />
+    
+    <!-- Membership Promo (Desktop Only) -->
+    <MembershipPromo />
+    
+    <!-- Articles Section (Desktop Only) -->
+    <Articles />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Modals & Overlays -->
+  <BookingModal client:load />
+  <SuccessToast client:load />
+</body>
+</html>
