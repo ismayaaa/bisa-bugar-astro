@@ -25,7 +25,7 @@ import LoginForm from "../components/auth/LoginForm.svelte";
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     </head>
     <body id="body">
-        <Header client:load />
+        <Header client:only="svelte" />
 
         <main class="auth-page">
             <div class="auth-container">
@@ -36,12 +36,13 @@ import LoginForm from "../components/auth/LoginForm.svelte";
                         <p>Masuk ke akun Bisa Bugar Anda</p>
                     </div>
 
-                    <LoginForm client:load />
+                    <LoginForm client:only="svelte" />
 
                     <div class="auth-footer">
                         <p>
                             Belum punya akun? <a href="/daftar"
-                                >Daftar Sekarang</a>
+                                >Daftar Sekarang</a
+                            >
                         </p>
                     </div>
                 </div>

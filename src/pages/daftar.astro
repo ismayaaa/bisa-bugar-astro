@@ -25,7 +25,7 @@ import RegisterForm from "../components/auth/RegisterForm.svelte";
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     </head>
     <body id="body">
-        <Header client:load />
+        <Header client:only="svelte" />
 
         <main class="auth-page">
             <div class="auth-container">
@@ -36,7 +36,7 @@ import RegisterForm from "../components/auth/RegisterForm.svelte";
                         <p>Bergabung dengan komunitas Bisa Bugar</p>
                     </div>
 
-                    <RegisterForm client:load />
+                    <RegisterForm client:only="svelte" />
 
                     <div class="auth-footer">
                         <p>
