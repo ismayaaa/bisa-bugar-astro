@@ -463,6 +463,42 @@
         display: flex;
     }
 
+    /* Hide compact search on very narrow screens to reduce crowding */
+    @media (max-width: 399px) {
+        .search-compact {
+            display: none;
+        }
+
+        .btn-login-mobile {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        .logo-text {
+            font-size: 1rem;
+        }
+
+        .hamburger {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .hamburger svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    }
+
+    @media (min-width: 400px) and (max-width: 639px) {
+        .search-input-compact {
+            width: 3rem;
+        }
+
+        .search-compact {
+            padding: 0.375rem 0.5rem;
+        }
+    }
+
     @media (min-width: 640px) {
         .hide-mobile {
             display: flex;

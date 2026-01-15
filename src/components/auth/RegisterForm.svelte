@@ -388,50 +388,91 @@
   .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .auth-form {
+      gap: 1rem;
+    }
   }
 
   .error-message {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     background: #fee2e2;
     color: #dc2626;
-    border-radius: 0.75rem;
-    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
     font-weight: 600;
   }
 
+  @media (min-width: 768px) {
+    .error-message {
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+
   .error-message svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .error-message svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .form-group {
+      gap: 0.5rem;
+    }
   }
 
   .form-group label {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .form-group label {
+      font-size: 0.875rem;
+    }
   }
 
   .input-wrapper {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     background: var(--color-bg-secondary);
     border: 2px solid var(--color-border);
-    border-radius: 1rem;
-    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    padding: 0.625rem 0.75rem;
     transition:
       border-color 0.2s,
       box-shadow 0.2s;
+  }
+
+  @media (min-width: 768px) {
+    .input-wrapper {
+      gap: 0.75rem;
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+    }
   }
 
   .input-wrapper:focus-within {
@@ -440,16 +481,30 @@
   }
 
   .input-icon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     color: var(--color-text-muted);
     flex-shrink: 0;
   }
 
+  @media (min-width: 768px) {
+    .input-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
   .input-wrapper input {
     flex: 1;
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: var(--color-text-primary);
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .input-wrapper input {
+      font-size: 1rem;
+    }
   }
 
   .input-wrapper input::placeholder {
@@ -457,9 +512,16 @@
   }
 
   .toggle-password {
-    padding: 0.25rem;
+    padding: 0.125rem;
     color: var(--color-text-muted);
     transition: color 0.15s;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .toggle-password {
+      padding: 0.25rem;
+    }
   }
 
   .toggle-password:hover {
@@ -467,54 +529,102 @@
   }
 
   .toggle-password svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .toggle-password svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   /* Captcha Styles */
   .captcha-container {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.375rem;
     background: var(--color-bg-secondary);
     border: 2px solid var(--color-border);
-    border-radius: 1rem;
-    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.625rem;
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .captcha-container {
+      gap: 0.75rem;
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+    }
   }
 
   .captcha-question {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     flex: 1;
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .captcha-question {
+      gap: 0.5rem;
+    }
   }
 
   .captcha-num {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 900;
     color: var(--color-primary);
     background: var(--color-primary-light);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .captcha-num {
+      font-size: 1.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+    }
   }
 
   .captcha-op,
   .captcha-eq {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-text-secondary);
   }
 
+  @media (min-width: 768px) {
+    .captcha-op,
+    .captcha-eq {
+      font-size: 1.125rem;
+    }
+  }
+
   .captcha-input {
-    width: 3.5rem;
-    padding: 0.5rem;
-    font-size: 1.125rem;
+    width: 2.5rem;
+    padding: 0.25rem;
+    font-size: 0.875rem;
     font-weight: 700;
     text-align: center;
     background: var(--color-surface);
     border: 2px solid var(--color-border);
-    border-radius: 0.75rem;
+    border-radius: 0.375rem;
     color: var(--color-text-primary);
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .captcha-input {
+      width: 3.5rem;
+      padding: 0.5rem;
+      font-size: 1.125rem;
+      border-radius: 0.75rem;
+    }
   }
 
   .captcha-input:focus {
@@ -523,9 +633,16 @@
   }
 
   .refresh-captcha {
-    padding: 0.5rem;
+    padding: 0.25rem;
     color: var(--color-text-muted);
     transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .refresh-captcha {
+      padding: 0.5rem;
+    }
   }
 
   .refresh-captcha:hover {
@@ -534,23 +651,44 @@
   }
 
   .refresh-captcha svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .refresh-captcha svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   /* Terms Checkbox */
   .terms-group {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .terms-group {
+      margin-top: 0.5rem;
+    }
   }
 
   .checkbox-label {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.5rem;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: var(--color-text-secondary);
-    line-height: 1.5;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    .checkbox-label {
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
   }
 
   .checkbox-label input {
@@ -560,15 +698,24 @@
   }
 
   .checkmark {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     background: var(--color-bg-secondary);
     border: 2px solid var(--color-border);
-    border-radius: 0.375rem;
+    border-radius: 0.25rem;
     flex-shrink: 0;
     position: relative;
-    margin-top: 0.125rem;
+    margin-top: 0.0625rem;
     transition: all 0.15s;
+  }
+
+  @media (min-width: 768px) {
+    .checkmark {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 0.375rem;
+      margin-top: 0.125rem;
+    }
   }
 
   .checkbox-label input:checked ~ .checkmark {
@@ -580,13 +727,22 @@
     content: "";
     position: absolute;
     display: none;
-    left: 0.375rem;
-    top: 0.125rem;
-    width: 0.375rem;
-    height: 0.625rem;
+    left: 0.25rem;
+    top: 0.0625rem;
+    width: 0.3125rem;
+    height: 0.5rem;
     border: solid white;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+  }
+
+  @media (min-width: 768px) {
+    .checkmark::after {
+      left: 0.375rem;
+      top: 0.125rem;
+      width: 0.375rem;
+      height: 0.625rem;
+    }
   }
 
   .checkbox-label input:checked ~ .checkmark::after {
@@ -608,15 +764,24 @@
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 1rem;
+    padding: 0.75rem;
     background: var(--color-primary);
     color: white;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.3);
     transition: all 0.15s;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-submit {
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 1rem;
+      margin-top: 0.5rem;
+    }
   }
 
   .btn-submit:hover:not(:disabled) {
@@ -630,12 +795,19 @@
   }
 
   .loading-spinner {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-top-color: white;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .loading-spinner {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 
   @keyframes spin {
@@ -647,8 +819,15 @@
   .social-divider {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 0.5rem 0;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .social-divider {
+      gap: 1rem;
+      margin: 0.5rem 0;
+    }
   }
 
   .social-divider::before,
@@ -660,15 +839,27 @@
   }
 
   .social-divider span {
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
+  @media (min-width: 768px) {
+    .social-divider span {
+      font-size: 0.75rem;
+    }
+  }
+
   .social-buttons {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .social-buttons {
+      gap: 0.75rem;
+    }
   }
 
   .btn-social {
@@ -676,15 +867,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.875rem;
+    gap: 0.375rem;
+    padding: 0.625rem;
     background: var(--color-surface);
     border: 2px solid var(--color-border);
-    border-radius: 1rem;
-    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-text-secondary);
     transition: all 0.15s;
+  }
+
+  @media (min-width: 768px) {
+    .btn-social {
+      gap: 0.5rem;
+      padding: 0.875rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+    }
   }
 
   .btn-social:hover {
@@ -693,7 +893,14 @@
   }
 
   .btn-social svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .btn-social svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 </style>
