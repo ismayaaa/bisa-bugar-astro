@@ -2,6 +2,9 @@
     "name": "bisa-bugar-astro",
     "type": "module",
     "version": "1.0.0",
+    "engines": {
+        "node": ">=18.0.0"
+    },
     "description": "Bisa Bugar - Web Edukasi Gym & Fitness - Unified Astro + Svelte Prototype",
     "scripts": {
         "dev": "astro dev",
