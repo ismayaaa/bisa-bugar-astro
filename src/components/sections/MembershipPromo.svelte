@@ -195,7 +195,15 @@
 
     .pricing-card-light {
         background: white;
-        color: var(--color-text-primary);
+        color: #111827;
+    }
+
+    .pricing-card-light .pricing-tier {
+        color: #111827;
+    }
+
+    .pricing-card-light .pricing-price {
+        color: #111827;
     }
 
     .pricing-card-dark {
