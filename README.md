@@ -1,11 +1,60 @@
 ## Tahap 3: Studi Kasus Implementasi (Materi 10)
 
-Pada tahap ini, studi kasus implementasi difokuskan pada fitur **Booking Personal Trainer** pada prototipe sistem berbasis web BisaBugar. Fitur ini dipilih karena merepresentasikan kebutuhan inti pengguna (member) dalam melakukan pemesanan sesi latihan dengan pelatih secara terjadwal, sekaligus melibatkan alur bisnis yang relatif kompleks seperti validasi status pengguna, pengecekan ketersediaan jadwal, penyimpanan data booking, serta pemberian umpan balik kepada pengguna. Dengan memilih fitur ini sebagai studi kasus, implementasi dapat menunjukkan secara nyata bagaimana integrasi pola desain dan arsitektur sistem membantu mengelola kompleksitas logika tanpa membebani antarmuka pengguna.
+Pada tahap ini, studi kasus implementasi difokuskan pada fitur **Booking Personal Trainer** pada prototipe sistem berbasis web BisaBugar. Fitur ini dipilih karena merupakan salah satu fitur inti yang secara langsung mendukung kebutuhan utama pengguna, yaitu melakukan pemesanan sesi latihan dengan pelatih secara terjadwal. Selain itu, fitur ini melibatkan alur bisnis yang relatif kompleks, seperti pemilihan pelatih, validasi status keanggotaan, pengecekan ketersediaan jadwal, penyimpanan data booking, serta pemberian umpan balik kepada pengguna. Dengan kompleksitas tersebut, fitur Booking Personal Trainer menjadi studi kasus yang tepat untuk menunjukkan bagaimana integrasi pola desain dan arsitektur sistem mampu mengelola logika bisnis tanpa membebani antarmuka pengguna.
 
-Implementasi fitur Booking Personal Trainer dimulai dari interaksi pengguna pada lapisan antarmuka, yaitu ketika member membuka modal pemesanan, memilih pelatih dan waktu yang diinginkan, lalu melakukan konfirmasi. Dari sisi desain, pemrosesan booking tidak diletakkan langsung pada komponen UI agar tidak menghasilkan ketergantungan yang tinggi dan sulit dipelihara. Sebaliknya, UI hanya berfungsi sebagai pemicu proses, sedangkan keputusan bisnis dan orkestrasi proses ditempatkan pada lapisan layanan. Pendekatan ini selaras dengan rancangan arsitektur berbasis komponen pada C4 Model, di mana lapisan antarmuka bertindak sebagai pengirim permintaan, dan lapisan logika aplikasi bertanggung jawab terhadap aturan bisnis, pengelolaan data, serta komunikasi antarkomponen.
+Proses desain fitur Booking Personal Trainer dimulai dari analisis alur interaksi pengguna pada lapisan antarmuka. Pengguna membuka modal booking, memilih pelatih dari dropdown yang telah disesuaikan dengan tema aplikasi, menentukan waktu sesi, dan melakukan konfirmasi. Dari sisi arsitektur, logika pemrosesan booking tidak ditempatkan langsung pada komponen UI untuk menghindari ketergantungan yang tinggi dan kompleksitas yang sulit dikelola. Sebaliknya, UI hanya berperan sebagai pemicu proses, sedangkan seluruh orkestrasi logika bisnis ditempatkan pada lapisan aplikasi. Pendekatan ini selaras dengan rancangan arsitektur berbasis komponen pada C4 Model, di mana UI Layer bertugas mengirimkan permintaan, dan Application Layer bertanggung jawab terhadap koordinasi proses serta penerapan aturan bisnis.
 
-Tantangan teknis utama pada pengembangan prototipe ini adalah keterbatasan prototipe yang pada awalnya bersifat statis dan belum terhubung dengan backend atau database nyata, sehingga aksi booking belum menghasilkan perubahan status yang persisten. Untuk mengatasi hal tersebut, penyimpanan booking disimulasikan menggunakan mekanisme penyimpanan lokal (localStorage) agar perubahan dapat diamati secara langsung pada UI serta tetap tersedia setelah halaman dimuat ulang. Tantangan lain muncul pada aspek notifikasi dan pembaruan status antarkomponen, karena apabila logika notifikasi ditanamkan langsung dalam proses booking atau komponen UI, sistem akan sulit dikembangkan ketika di masa depan diperlukan variasi notifikasi baru (misalnya push notification, notifikasi email, atau log aktivitas).
+Tantangan teknis utama dalam pengembangan prototipe ini adalah keterbatasan infrastruktur backend yang masih bersifat simulatif. Sistem belum terhubung dengan database nyata, sehingga penyimpanan dan pengelolaan data booking harus disimulasikan menggunakan localStorage. Kondisi ini menimbulkan tantangan dalam menjaga konsistensi data serta sinkronisasi state antar komponen, khususnya setelah halaman dimuat ulang. Selain itu, penggunaan Astro yang mendukung server-side rendering menuntut penanganan khusus agar akses localStorage hanya dilakukan pada sisi client. Tantangan lain juga muncul dari penggunaan Svelte versi terbaru, yang memerlukan adaptasi terhadap mekanisme reaktivitas baru untuk memastikan pembaruan UI berjalan secara konsisten.
 
-Solusi yang diterapkan mengintegrasikan tiga pola desain yang telah direncanakan pada tahap sebelumnya. Pertama, akses data booking dan jadwal dipusatkan melalui **DatabaseManager** yang menerapkan prinsip **Singleton**, sehingga seluruh komponen aplikasi menggunakan sumber data yang konsisten dan terkelola dari satu titik, sekalipun pada prototipe data tersebut masih bersifat simulatif. Kedua, proses booking dibungkus melalui **BookingFacade** sesuai **Facade Pattern**, sehingga antarmuka pengguna hanya perlu memanggil satu operasi inti untuk menjalankan keseluruhan proses (validasi, pengecekan jadwal, penyimpanan, dan pemicu notifikasi). Ketiga, pembaruan status booking dan penyajian notifikasi diimplementasikan melalui mekanisme **Observer** menggunakan event bus, di mana perubahan yang terjadi pada proses booking diterbitkan sebagai event dan komponen lain (misalnya toast/notifikasi atau pembaruan tampilan jadwal) berperan sebagai subscriber yang bereaksi terhadap event tersebut. Dengan demikian, penambahan atau perubahan jenis notifikasi dapat dilakukan tanpa mengubah logika inti pemesanan.
+Untuk mengatasi tantangan tersebut, solusi yang diterapkan mengintegrasikan tiga pola desain utama yang telah dirancang pada tahap sebelumnya. **Singleton Pattern** diimplementasikan melalui DatabaseManager untuk memastikan bahwa pengelolaan data booking dilakukan melalui satu instance terpusat, sehingga konsistensi data tetap terjaga meskipun diakses oleh berbagai komponen. **Facade Pattern** diwujudkan dalam BookingFacade yang bertindak sebagai antarmuka tunggal antara UI dan subsistem internal, sehingga seluruh proses booking—mulai dari validasi keanggotaan, pengecekan jadwal, hingga penyimpanan data dan pemicu notifikasi—dapat dijalankan melalui satu pemanggilan metode. **Observer Pattern** diterapkan melalui EventBus untuk mendukung komunikasi berbasis event, di mana perubahan status booking akan memicu pembaruan UI dan notifikasi secara otomatis tanpa menciptakan ketergantungan langsung antar komponen.
 
-Secara keseluruhan, studi kasus implementasi ini menunjukkan bahwa integrasi arsitektur berbasis komponen dan pola desain yang tepat mampu mengubah prototipe yang semula statis menjadi prototipe yang lebih terstruktur dan demonstratif. Walaupun sistem belum menggunakan layanan backend sungguhan, pemisahan tanggung jawab antar lapisan dan penggunaan pola desain membuat alur booking lebih mudah dipahami, lebih mudah dipelihara, serta lebih siap untuk dikembangkan menjadi sistem produksi di tahap pengembangan berikutnya. Dokumen pendukung implementasi dan pemetaan pola desain tersedia pada `PATTERNS.md` dan `TAHAP_3_STUDI_KASUS.md`, sedangkan kode implementasi dapat ditemukan pada modul `src/lib/` dan komponen UI terkait di `src/components/`.
+Implementasi fitur Booking Personal Trainer ini sepenuhnya selaras dengan arsitektur sistem yang telah dirancang menggunakan pendekatan C4 Model dan Process View. UI Layer berinteraksi dengan Application Layer melalui BookingFacade sebagai titik masuk utama. Pada Process View, alur booking dimulai dari aksi pengguna di UI yang memanggil metode pada facade, kemudian facade mengoordinasikan Business Logic Layer dan Data Layer untuk memproses dan menyimpan data. Setelah proses selesai, mekanisme Observer memastikan bahwa notifikasi dan pembaruan tampilan terjadi secara reaktif. Pendekatan ini menghasilkan pemisahan tanggung jawab yang jelas antar lapisan, meningkatkan kemudahan pemeliharaan, serta mempersiapkan sistem untuk dikembangkan lebih lanjut menuju implementasi backend nyata di masa depan.
+
+### Diagram Arsitektur Fitur Booking Personal Trainer
+
+```mermaid
+graph TB
+    subgraph "UI/Frontend Layer"
+        UI[Booking Modal UI]
+        Dropdown[Coach Dropdown]
+        Form[Booking Form]
+    end
+    
+    subgraph "Application Layer"
+        Facade[BookingFacade<br/>Facade Pattern]
+    end
+    
+    subgraph "Business Logic Layer"
+        Validator[Membership Validator]
+        Checker[Schedule Checker]
+    end
+    
+    subgraph "Data Layer"
+        DBManager[DatabaseManager<br/>Singleton Pattern]
+        Storage[(localStorage)]
+    end
+    
+    subgraph "Infrastructure Layer"
+        EventBus[EventBus<br/>Observer Pattern]
+        Notification[Toast Notification]
+    end
+    
+    UI --> Facade
+    Dropdown --> UI
+    Form --> UI
+    
+    Facade --> Validator
+    Facade --> Checker
+    Facade --> DBManager
+    Facade --> EventBus
+    
+    Validator --> DBManager
+    Checker --> DBManager
+    DBManager --> Storage
+    
+    EventBus --> Notification
+    EventBus --> UI
+    
+    style Facade fill:#ff9999
+    style DBManager fill:#2f3542
+    style EventBus fill:#99ff99
