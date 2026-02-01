@@ -58,7 +58,7 @@ graph TB
     EventBus --> UI
     
     style Facade fill:#ff9999
-    style DBManager fill:#99ccff
+    style DBManager fill:#2f3542
     style EventBus fill:#99ff99
 ```
 
