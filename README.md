@@ -55,7 +55,7 @@ graph TB
     EventBus --> Notification
     EventBus --> UI
     
-    style Facade fill:#ff9999
+    style Facade fill:#1f2937
     style DBManager fill:#2f3542
-    style EventBus fill:#99ff99
+    style EventBus fill:#0f172a
 ```
