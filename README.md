@@ -10,6 +10,9 @@ Untuk mengatasi tantangan tersebut, solusi yang diterapkan mengintegrasikan tiga
 
 Implementasi fitur Booking Personal Trainer ini sepenuhnya selaras dengan arsitektur sistem yang telah dirancang menggunakan pendekatan C4 Model dan Process View. UI Layer berinteraksi dengan Application Layer melalui BookingFacade sebagai titik masuk utama. Pada Process View, alur booking dimulai dari aksi pengguna di UI yang memanggil metode pada facade, kemudian facade mengoordinasikan Business Logic Layer dan Data Layer untuk memproses dan menyimpan data. Setelah proses selesai, mekanisme Observer memastikan bahwa notifikasi dan pembaruan tampilan terjadi secara reaktif. Pendekatan ini menghasilkan pemisahan tanggung jawab yang jelas antar lapisan, meningkatkan kemudahan pemeliharaan, serta mempersiapkan sistem untuk dikembangkan lebih lanjut menuju implementasi backend nyata di masa depan.
 
+## Diagram Arsitektur Booking Personal Trainer
+
+```mermaid
 graph TB
     subgraph "UI/Frontend Layer"
         UI[Booking Modal UI]
@@ -51,20 +54,8 @@ graph TB
     
     EventBus --> Notification
     EventBus --> UI
-
-    %% --- Style helpers (dark backgrounds with readable text) ---
-    classDef dark fill:#1f2937,stroke:#94a3b8,color:#ffffff;
-    classDef accentRed fill:#ff9999,stroke:#b91c1c,color:#111827;
-    classDef accentGreen fill:#99ff99,stroke:#16a34a,color:#111827;
-
-    %% Apply classes
-    class DBManager dark;
-    class EventBus dark;
-    class Facade accentRed;
-    class Storage dark;
-    class Notification dark;
-
-    %% (Optional) keep your original colors but fix text/borders explicitly:
-    %% style DBManager fill:#2f3542,color:#ffffff,stroke:#94a3b8
-    %% style EventBus fill:#1f2937,color:#ffffff,stroke:#94a3b8
-    %% style Facade fill:#ff9999,color:#111827,stroke:#b91c1c
+    
+    style Facade fill:#ff9999
+    style DBManager fill:#2f3542
+    style EventBus fill:#99ff99
+```
