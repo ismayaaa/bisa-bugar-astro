@@ -264,6 +264,24 @@
     padding: 0.75rem;
     font-weight: 600;
     color: var(--color-text-primary);
+    background: transparent;
+  }
+
+  .input-wrapper select {
+    appearance: none;
+    padding-right: 2.5rem;
+  }
+
+  .input-wrapper select option {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    padding: 0.75rem;
+    border: none;
+  }
+
+  .input-wrapper select option:hover,
+  .input-wrapper select option:focus {
+    background: var(--color-bg-secondary);
   }
 
   .input-wrapper input::placeholder {
@@ -272,11 +290,6 @@
 
   .select-wrapper {
     position: relative;
-  }
-
-  .select-wrapper select {
-    appearance: none;
-    padding-right: 2.5rem;
   }
 
   .select-icon {

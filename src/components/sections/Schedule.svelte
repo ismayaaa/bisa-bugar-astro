@@ -1,42 +1,85 @@
 <script lang="ts">
-    import { activeScheduleDay } from "../../lib/stores";
-
+    import { activeScheduleDay, toast } from "../../lib/stores";
+    import { onMount } from 'svelte';
+    import BookingFacade from '../../lib/booking';
+    import EventBus, { BookingEventType } from '../../lib/events';
+    import ConfirmModal from '../ui/ConfirmModal.svelte';
+    
     const days = ["SENIN", "SELASA", "RABU", "KAMIS", "JUMAT"];
-
+    
     let selectedDay = $state("SENIN");
-
+    let scheduleData = $state<any[]>([]);
+    let confirmModalOpen = $state(false);
+    let selectedClass = $state<any>(null);
+    let currentMemberId = 'member_001'; // Mock current user
+    
+    const bookingFacade = BookingFacade.getInstance();
+    const eventBus = EventBus.getInstance();
+    
     activeScheduleDay.subscribe((day) => {
         selectedDay = day;
+        loadScheduleData();
     });
-
+    
     function selectDay(day: string) {
         selectedDay = day;
         activeScheduleDay.set(day);
     }
-
-    const scheduleData = [
-        {
-            time: "07:00",
-            className: "Zumba Fitness",
-            coach: "Coach Aniq",
-            duration: "60 Menit",
-            available: true,
-        },
-        {
-            time: "09:00",
-            className: "Power Yoga",
-            coach: "Coach Ismaya",
-            duration: "45 Menit",
-            available: true,
-        },
-        {
-            time: "17:00",
-            className: "Body Pump",
-            coach: "Coach Leon",
-            duration: "60 Menit",
-            available: false,
-        },
-    ];
+    
+    function loadScheduleData() {
+        scheduleData = bookingFacade.getAvailableClasses(selectedDay, currentMemberId);
+    }
+    
+    function handleDaftarClick(classItem: any) {
+        selectedClass = classItem;
+        confirmModalOpen = true;
+    }
+    
+    async function handleConfirmBooking() {
+        if (!selectedClass) return;
+        
+        try {
+            const result = await bookingFacade.bookClass({
+                classId: selectedClass.id,
+                memberId: currentMemberId
+            });
+            
+            if (result.success) {
+                toast.show(result.message, 'success');
+                loadScheduleData(); // Refresh the schedule
+            } else {
+                toast.show(result.message, 'error');
+            }
+        } catch (error) {
+            toast.show('Terjadi kesalahan saat melakukan pendaftaran', 'error');
+        }
+    }
+    
+    function handleCancelBooking() {
+        confirmModalOpen = false;
+        selectedClass = null;
+    }
+    
+    // Subscribe to events for real-time updates
+    onMount(() => {
+        // Only initialize on client-side
+        if (typeof window !== 'undefined') {
+            loadScheduleData();
+            
+            // Subscribe to booking events
+            eventBus.subscribe(BookingEventType.BOOKING_CREATED, (event) => {
+                console.log('Booking created:', event.data);
+            });
+            
+            eventBus.subscribe(BookingEventType.SCHEDULE_UPDATED, (event) => {
+                console.log('Schedule updated:', event.data);
+            });
+            
+            eventBus.subscribe(BookingEventType.CLASS_FULL, (event) => {
+                toast.show(`Kelas ${event.data.className} sudah penuh!`, 'info');
+            });
+        }
+    });
 </script>
 
 <section id="jadwal" class="schedule">
@@ -78,8 +121,10 @@
                                 </p>
                             </div>
                         </div>
-                        {#if item.available}
-                            <button class="btn-schedule">Daftar</button>
+                        {#if item.isBookedByMember}
+                            <span class="badge-booked">TERDAFTAR</span>
+                        {:else if item.available}
+                            <button class="btn-schedule" onclick={() => handleDaftarClick(item)}>Daftar</button>
                         {:else}
                             <span class="badge-full">PENUH</span>
                         {/if}
@@ -89,6 +134,16 @@
         </div>
     </div>
 </section>
+
+<!-- Confirmation Modal -->
+<ConfirmModal 
+    bind:isOpen={confirmModalOpen}
+    className={selectedClass?.className || ''}
+    coach={selectedClass?.coach || ''}
+    time={selectedClass?.time || ''}
+    onConfirm={handleConfirmBooking}
+    onCancel={handleCancelBooking}
+/>
 
 <style>
     .schedule {
@@ -205,6 +260,15 @@
         padding: 0.5rem 1rem;
         background: #fee2e2;
         color: #dc2626;
+        font-size: 0.875rem;
+        font-weight: 700;
+        border-radius: 9999px;
+    }
+    
+    .badge-booked {
+        padding: 0.5rem 1rem;
+        background: rgba(34, 197, 94, 0.1);
+        color: #22c55e;
         font-size: 0.875rem;
         font-weight: 700;
         border-radius: 9999px;

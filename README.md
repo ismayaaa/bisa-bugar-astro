@@ -148,6 +148,47 @@ Website mendukung dark mode dengan:
 - Tab selector untuk hari
 - State tersimpan di Svelte store
 
+## 🏗️ Tahap 3: Studi Kasus Implementasi
+
+### Fitur Booking Personal Trainer
+
+Fitur Booking Personal Trainer diimplementasikan sebagai studi kasus utama yang mengintegrasikan tiga pola desain fundamental:
+
+#### **Pola Desain yang Diterapkan:**
+
+1. **Singleton Pattern** (`src/lib/database.ts`)
+   - `DatabaseManager` memastikan satu instance pengelola data
+   - Centralized akses ke localStorage untuk mock database
+   - Methods: `getClasses()`, `saveBooking()`, `cancelBooking()`
+
+2. **Facade Pattern** (`src/lib/booking.ts`)
+   - `BookingFacade` menyederhanakan alur booking kompleks
+   - Single method call: `bookClass({ classId, memberId })`
+   - Koordinasi membership validation, availability check, dan event triggering
+
+3. **Observer Pattern** (`src/lib/events.ts`)
+   - `EventBus` untuk sistem notifikasi real-time
+   - Events: `BOOKING_CREATED`, `BOOKING_CANCELLED`, `SCHEDULE_UPDATED`, `CLASS_FULL`
+   - Decoupled communication antar komponen
+
+#### **Fitur Interaktif:**
+
+- **Jadwal Kelas Hari Ini**: Booking dengan konfirmasi modal
+- **State Persistence**: Data tersimpan di localStorage
+- **Real-time Updates**: UI update otomatis via event system
+- **Dark Theme Dropdown**: Styling konsisten untuk trainer selection
+
+#### **Arsitektur:**
+
+```
+UI Layer → BookingFacade → {Validator, Checker, DatabaseManager}
+                ↓
+            EventBus → Notifications → UI Updates
+```
+
+**Dokumentasi lengkap:** [`PATTERNS.md`](./PATTERNS.md)  
+**Studi kasus detail:** [`TAHAP_3_STUDI_KASUS.md`](./TAHAP_3_STUDI_KASUS.md)
+
 ## 📝 Assignment Context
 
 Proyek ini dibuat sebagai prototype UI/UX untuk tugas mata kuliah Merancang Antarmuka Pengguna di BINUS University.
